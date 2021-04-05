@@ -8,10 +8,10 @@ public class Problem {
     private Function function;
     private final List<List<Point>> pointSets;
 
-    public Problem() {
-        function = new SinusFunction(1, 0, 0);
-        pointSets = new ArrayList<List<Point>>();
-        List<Point> set1 = new ArrayList<Point>();
+    public Problem(Function function) {
+        this.function = function;
+        pointSets = new ArrayList<>();
+        List<Point> set1 = new ArrayList<>();
         set1.add(new Point(-2.33, function.calculateAtPoint(-2.33)));
         set1.add(new Point(-0.37, function.calculateAtPoint(-0.37)));
         set1.add(new Point(0.02, function.calculateAtPoint(0.02)));
@@ -54,6 +54,14 @@ public class Problem {
         pointSets.add(set2);
         pointSets.add(set3);
         pointSets.add(set4);
+    }
+
+    public double calculateAtPoint(double x) {
+        return function.calculateAtPoint(x);
+    }
+
+    public Function getFunction() {
+        return function;
     }
 
     public List<List<Point>> getPointSets() {
