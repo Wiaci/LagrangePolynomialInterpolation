@@ -1,8 +1,4 @@
-import Functions.SinusFunction;
-import LagrangeInterpolation.Interpolator;
-import LagrangeInterpolation.LagrangePolynomial;
-import LagrangeInterpolation.Plot;
-import LagrangeInterpolation.InterpolationProblem;
+import LagrangeInterpolation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +6,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        InterpolationProblem problem = new InterpolationProblem(new SinusFunction(1, 0, 0));
+        try {
+            Problem problem = ProblemGetter.getProblem();
+            AdamsMethodSolver adamsMethodSolver = new AdamsMethodSolver(problem, 4);
+            List<Point> pointListForInterpolation = adamsMethodSolver.getPointSet();
+            InterpolationProblem interpolationProblem =
+                    new InterpolationProblem(pointListForInterpolation);
+            Interpolator interpolator = new Interpolator(interpolationProblem);
+            LagrangePolynomial lagrangePolynomial = interpolator.calculateLagrangePolynomial();
+
+            new Plot(lagrangePolynomial, problem.getInterval(), "Жирафик-график");
+
+        } catch (IllegalInputException e) {
+            System.out.println(e.getMessage());
+        }
+
+        /*InterpolationProblem problem = new InterpolationProblem(new SinusFunction(1, 0, 0));
         Interpolator interpolator = new Interpolator(problem);
         List<LagrangePolynomial> lagrangePolynomials = interpolator.calculateLagrangePolynomials();
 
@@ -38,6 +49,6 @@ public class Main {
                     System.out.println("Значение функции: " + problem.calculateAtPoint(point) + "\n");
                 }
             }
-        } while (!answer.equals("exit"));
+        } while (!answer.equals("exit"));*/
     }
 }

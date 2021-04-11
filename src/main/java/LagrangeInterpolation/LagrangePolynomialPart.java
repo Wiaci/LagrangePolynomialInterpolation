@@ -1,11 +1,9 @@
 package LagrangeInterpolation;
 
-import Functions.Function;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class LagrangePolynomialPart implements Function {
+public class LagrangePolynomialPart {
 
     private double multiplier;
     private final List<Double> particulars;

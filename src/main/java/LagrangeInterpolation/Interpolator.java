@@ -11,16 +11,12 @@ public class Interpolator {
         this.problem = problem;
     }
 
-    public List<LagrangePolynomial> calculateLagrangePolynomials() {
-        List<LagrangePolynomial> lagrangePolynomials = new ArrayList<>();
-        for (int i = 0; i < problem.getPointSets().size(); i++) {
-            LagrangePolynomial lagrangePolynomial = new LagrangePolynomial();
-            List<Point> pointSet = problem.getPointSets().get(i);
-            for (int j = 0; j < pointSet.size(); j++) {
-                lagrangePolynomial.addPart(new LagrangePolynomialPart(pointSet, j));
-            }
-            lagrangePolynomials.add(lagrangePolynomial);
+    public LagrangePolynomial calculateLagrangePolynomial() {
+        LagrangePolynomial lagrangePolynomial = new LagrangePolynomial();
+        List<Point> pointSet = problem.getPointSet();
+        for (int j = 0; j < pointSet.size(); j++) {
+            lagrangePolynomial.addPart(new LagrangePolynomialPart(pointSet, j));
         }
-        return lagrangePolynomials;
+        return lagrangePolynomial;
     }
 }

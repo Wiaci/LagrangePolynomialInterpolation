@@ -1,6 +1,8 @@
+package LagrangeInterpolation;
+
 public class Borders {
 
-    private double left, right;
+    private final double left, right;
 
     public Borders(double left, double right) {
         this.left = left;
