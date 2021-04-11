@@ -1,11 +1,13 @@
+package LagrangeInterpolation;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Interpolator {
 
-    private final Problem problem;
+    private final InterpolationProblem problem;
 
-    public Interpolator(Problem problem) {
+    public Interpolator(InterpolationProblem problem) {
         this.problem = problem;
     }
 
@@ -21,6 +23,4 @@ public class Interpolator {
         }
         return lagrangePolynomials;
     }
-
-
 }

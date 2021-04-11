@@ -1,3 +1,5 @@
+package LagrangeInterpolation;
+
 import Functions.Function;
 
 import java.util.ArrayList;

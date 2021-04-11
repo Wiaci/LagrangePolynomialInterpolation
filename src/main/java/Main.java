@@ -1,19 +1,16 @@
 import Functions.SinusFunction;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import LagrangeInterpolation.Interpolator;
+import LagrangeInterpolation.LagrangePolynomial;
+import LagrangeInterpolation.Plot;
+import LagrangeInterpolation.InterpolationProblem;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Problem problem = new Problem(new SinusFunction(1, 0, 0));
+        InterpolationProblem problem = new InterpolationProblem(new SinusFunction(1, 0, 0));
         Interpolator interpolator = new Interpolator(problem);
         List<LagrangePolynomial> lagrangePolynomials = interpolator.calculateLagrangePolynomials();
 
@@ -23,5 +20,24 @@ public class Main {
                     problem.getPointSets().get(i), "Набор данных " + (i + 1));
             plots.add(plot);
         }
+
+        System.out.println("Введите значение в формате: номер_набора точка");
+        Scanner in = new Scanner(System.in);
+        String answer;
+        do {
+            answer = in.nextLine().trim();
+            String[] parts = answer.split(" ");
+            if (parts.length == 2) {
+                String isNum = parts[0];
+                String isPoint = parts[1];
+                if (isNum.matches("^[1-4]$") && isPoint.matches("^-?\\d+(.\\d+)?$")) {
+                    int num = Integer.parseInt(isNum);
+                    double point = Double.parseDouble(isPoint);
+                    System.out.println("Значение полинома: " +
+                            lagrangePolynomials.get(num - 1).calculateAtPoint(point));
+                    System.out.println("Значение функции: " + problem.calculateAtPoint(point) + "\n");
+                }
+            }
+        } while (!answer.equals("exit"));
     }
 }
