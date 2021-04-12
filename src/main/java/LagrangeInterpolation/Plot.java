@@ -4,18 +4,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-import java.util.Set;
 
 public class Plot extends JFrame {
 
@@ -38,13 +32,6 @@ public class Plot extends JFrame {
                 dataset, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel panel = new ChartPanel(chart);
         setContentPane(panel);
-
-        /*XYPlot plot = chart.getXYPlot();
-        XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
-        renderer.setSeriesLinesVisible(2, false);
-        renderer.setSeriesShapesVisible(2, true);*/
-
-        setVisible(true);
     }
 
     private XYDataset createDataset() {

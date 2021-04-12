@@ -25,6 +25,7 @@ public class ProblemGetter {
         System.out.println("3) y' + xe^y = 0");
         System.out.println("4) y' - (ln(x) + 1) / (x(y + 2)) = 0");
         System.out.println("5) y' + tg(y)/ctg^2(x) = 0");
+        System.out.println("6) y' - y = 0");
 
         String answer = in.nextLine().trim();
         switch (answer) {
@@ -33,6 +34,7 @@ public class ProblemGetter {
             case "3": return new ExampleFunction3();
             case "4": return new ExampleFunction4();
             case "5": return new ExampleFunction5();
+            case "6": return new ExampleFunction6();
             default: throw new IllegalInputException();
         }
     }
